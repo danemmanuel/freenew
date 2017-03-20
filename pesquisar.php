@@ -152,70 +152,70 @@ foreach ($chave as $lin) {
 
           <?php } }else{ ?>
           <div class="row">
-        <div class="col m12 s12 center">
-          <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que ofereçam <?php echo $q ?> :(</div>
-          <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
+            <div class="col m12 s12 center">
+              <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que ofereçam <?php echo $q ?> :(</div>
+              <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
 
-        </div>
+            </div>
+          </div>
+          <?php
+
+
+        } } ?>
+
+
       </div>
-      <?php
+    </div>
+    <?php } else {?>
 
+    <div class="row">
+      <div class="col m12 s12 center">
+        <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que oferecam <?php echo $q ?> :(</div>
+        <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
 
-          } } ?>
-
-
-        </div>
       </div>
-      <?php } else {?>
-
-      <div class="row">
-        <div class="col m12 s12 center">
-          <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que oferecam <?php echo $q ?> :(</div>
-          <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
-
-        </div>
-      </div>
-      <?php } ?>
+    </div>
+    <?php } ?>
 
 
 
 
-    </body>
+  </body>
 
-    <script type="text/javascript"> 
+  <script type="text/javascript"> 
 
-    $(document).ready(function () {$('input.autocomplete2').autocomplete({
-      data: {
-        <?php $filtro= file_get_contents("includes/filtro.html");
-        echo $filtro; ?>
-      }});});
+  $(document).ready(function () {$('input.autocomplete2').autocomplete({
+    data: {
+      <?php $filtro= file_get_contents("includes/filtro.html");
+      echo $filtro; ?>
+    }});});
 
-    jQuery(window).load(function() { 
-      jQuery("#progress").delay(0).fadeOut("slow"); 
-    }); 
+  jQuery(window).load(function() { 
+    jQuery("#progress").delay(0).fadeOut("slow"); 
+  }); 
 
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      $('.slider').slider({full_width: true});
-    });
+  </script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('.slider').slider({full_width: true});
+  });
 
-    $(".button-collapse").sideNav();
+  $(".button-collapse").sideNav();
 
-    $('.button-collapse').sideNav({
+  $('.button-collapse').sideNav({
       menuWidth: 300, // Default is 300
       edge: 'left', // Choose the horizontal origin
       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
       draggable: true // Choose whether you can drag to open on touch screens
     }
     );
-    $(document).ready(function() {
-      $('select').material_select();
-    });
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 
-    $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
       constrainWidth: false, // Does not change width of dropdown to that of the activator
       hover: false, // Activate on hover
       gutter: 0, // Spacing from edge
@@ -225,12 +225,12 @@ foreach ($chave as $lin) {
     }
     );
 
-    $(document).ready(function(){
+  $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
   });
 
 
 
-    </script>
-    </html>
+  </script>
+  </html>
