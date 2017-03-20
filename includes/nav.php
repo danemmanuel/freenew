@@ -1,5 +1,6 @@
 <?php 
 
+
 require_once 'conta/php/class/freelancer.class.php';
 $freela= new freelancer();
 $freela->setId($idfreelancer);

@@ -1,6 +1,10 @@
 <?php 
 session_start();
-$idfreelancer=$_SESSION['idfreelancer'];
+$idfreelancer=NULL;
+
+if (isset($_SESSION['idfreelancer'])) {
+  $idfreelancer=$_SESSION['idfreelancer'];
+}
 
 require_once '../../conta/php/class/freelancer.class.php';
 $freelancer2= new freelancer();
