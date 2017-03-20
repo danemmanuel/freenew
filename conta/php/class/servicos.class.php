@@ -172,134 +172,134 @@ class servicos{
 			echo $e->getMessage();
 		}}
 		public function buscar(){
-		$conect = new conexao();
-		try{
-			$stmt = $conect->conn->prepare(
-				"SELECT * from servicos where idfreelancer=:idfreelancer LIMIT 5");
-			$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
-			$stmt->execute();
-			$r=$stmt->fetchAll();
-			$resposta= array();
-			foreach ($r as $row) {
-				$temp= array(
-					"idservico"=>$row['idservico'],
-					"idfreelancer"=>$row['idfreelancer'],
-					"nomeservico"=>$row['nomeservico'],
-					"descricao"=>$row['descricao'],
-					"tipo"=>$row['tipo'],
-					"preco"=>$row['preco']);
-				array_push($resposta, $temp);
-			}
-			return $resposta;
-		}catch(PDOException $e){
-			echo $e->getMessage();
-		}}
-
-		public function buscarAll(){
-		$conect = new conexao();
-		try{
-			$stmt = $conect->conn->prepare(
-				"SELECT * from servicos where idfreelancer=:idfreelancer");
-			$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
-			$stmt->execute();
-			$r=$stmt->fetchAll();
-			$resposta= array();
-			foreach ($r as $row) {
-				$temp= array(
-					"idservico"=>$row['idservico'],
-					"idfreelancer"=>$row['idfreelancer'],
-					"nomeservico"=>$row['nomeservico'],
-					"descricao"=>$row['descricao'],
-					"tipo"=>$row['tipo'],
-					"preco"=>$row['preco']);
-				array_push($resposta, $temp);
-			}
-			return $resposta;
-		}catch(PDOException $e){
-			echo $e->getMessage();
-		}}
-
-		public function buscaChave(){
-		$conect = new conexao();
-		try{
-			$stmt = $conect->conn->prepare(
-				"SELECT * from servicos where nomeservico like :chave");
-			$stmt->bindValue(":chave", '%'. $this->getChave() .'%');
-			$stmt->execute();
-			$r=$stmt->fetchAll();
-			$resposta= array();
-			foreach ($r as $row) {
-				$temp= array(
-					"idservico"=>$row['idservico'],
-					"idfreelancer"=>$row['idfreelancer'],
-					"nomeservico"=>$row['nomeservico'],
-					"descricao"=>$row['descricao'],
-					"tipo"=>$row['tipo'],
-					"preco"=>$row['preco']);
-				array_push($resposta, $temp);
-			}
-			return $resposta;
-		}catch(PDOException $e){
-			echo $e->getMessage();
-		}}
-
-
-
-		public function somar(){
 			$conect = new conexao();
 			try{
 				$stmt = $conect->conn->prepare(
-					"SELECT * from clientes where idusuario=:idusuario");
-				$stmt->bindValue(":idusuario",$this->getIdUsuario());
+					"SELECT * from servicos where idfreelancer=:idfreelancer LIMIT 5");
+				$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
 				$stmt->execute();
 				$r=$stmt->fetchAll();
-				$i=0;
+				$resposta= array();
 				foreach ($r as $row) {
-					$i++;
-				}
-				
-				echo $i;
-			}catch(PDOException $e){
-				echo $e->getMessage();
-			}}
-			
-			public function buscarId(){
-				$conect = new conexao();
-				try{
-					$stmt = $conect->conn->prepare(
-						"select * from servicos where idservico=:idservico");
-					$stmt->bindValue(':idservico',$this->getId());
-					$stmt->execute();
-					$row=$stmt->fetch();
-					$r= array(
+					$temp= array(
 						"idservico"=>$row['idservico'],
 						"idfreelancer"=>$row['idfreelancer'],
 						"nomeservico"=>$row['nomeservico'],
 						"descricao"=>$row['descricao'],
 						"tipo"=>$row['tipo'],
 						"preco"=>$row['preco']);
-					return $r;
-				}catch(PDOException $e){
-					echo $e->getMessage();
+					array_push($resposta, $temp);
 				}
-			}
+				return $resposta;
+			}catch(PDOException $e){
+				echo $e->getMessage();
+			}}
 
-			public function login(){
+			public function buscarAll(){
 				$conect = new conexao();
 				try{
 					$stmt = $conect->conn->prepare(
-						"select * from freelancer where email=:email and senha=:senha");
-					$stmt->bindValue(':email',$this->getEmail());
-					$stmt->bindValue(':senha',$this->getSenha());
+						"SELECT * from servicos where idfreelancer=:idfreelancer");
+					$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
 					$stmt->execute();
-					$row=$stmt->fetch();
-					$r= array(
-						"idservico"=>$row['idservico']);
-					return $r;
+					$r=$stmt->fetchAll();
+					$resposta= array();
+					foreach ($r as $row) {
+						$temp= array(
+							"idservico"=>$row['idservico'],
+							"idfreelancer"=>$row['idfreelancer'],
+							"nomeservico"=>$row['nomeservico'],
+							"descricao"=>$row['descricao'],
+							"tipo"=>$row['tipo'],
+							"preco"=>$row['preco']);
+						array_push($resposta, $temp);
+					}
+					return $resposta;
 				}catch(PDOException $e){
 					echo $e->getMessage();
-				}
-			}
-			
-		}
-		?>
+				}}
+
+				public function buscaChave(){
+					$conect = new conexao();
+					try{
+						$stmt = $conect->conn->prepare(
+							"SELECT * from servicos where nomeservico like :chave");
+						$stmt->bindValue(":chave", '%'. $this->getChave() .'%');
+						$stmt->execute();
+						$r=$stmt->fetchAll();
+						$resposta= array();
+						foreach ($r as $row) {
+							$temp= array(
+								"idservico"=>$row['idservico'],
+								"idfreelancer"=>$row['idfreelancer'],
+								"nomeservico"=>$row['nomeservico'],
+								"descricao"=>$row['descricao'],
+								"tipo"=>$row['tipo'],
+								"preco"=>$row['preco']);
+							array_push($resposta, $temp);
+						}
+						return $resposta;
+					}catch(PDOException $e){
+						echo $e->getMessage();
+					}}
+
+
+
+					public function somar(){
+						$conect = new conexao();
+						try{
+							$stmt = $conect->conn->prepare(
+								"SELECT * from clientes where idusuario=:idusuario");
+							$stmt->bindValue(":idusuario",$this->getIdUsuario());
+							$stmt->execute();
+							$r=$stmt->fetchAll();
+							$i=0;
+							foreach ($r as $row) {
+								$i++;
+							}
+							
+							echo $i;
+						}catch(PDOException $e){
+							echo $e->getMessage();
+						}}
+						
+						public function buscarId(){
+							$conect = new conexao();
+							try{
+								$stmt = $conect->conn->prepare(
+									"select * from servicos where idservico=:idservico");
+								$stmt->bindValue(':idservico',$this->getId());
+								$stmt->execute();
+								$row=$stmt->fetch();
+								$r= array(
+									"idservico"=>$row['idservico'],
+									"idfreelancer"=>$row['idfreelancer'],
+									"nomeservico"=>$row['nomeservico'],
+									"descricao"=>$row['descricao'],
+									"tipo"=>$row['tipo'],
+									"preco"=>$row['preco']);
+								return $r;
+							}catch(PDOException $e){
+								echo $e->getMessage();
+							}
+						}
+
+						public function login(){
+							$conect = new conexao();
+							try{
+								$stmt = $conect->conn->prepare(
+									"select * from freelancer where email=:email and senha=:senha");
+								$stmt->bindValue(':email',$this->getEmail());
+								$stmt->bindValue(':senha',$this->getSenha());
+								$stmt->execute();
+								$row=$stmt->fetch();
+								$r= array(
+									"idservico"=>$row['idservico']);
+								return $r;
+							}catch(PDOException $e){
+								echo $e->getMessage();
+							}
+						}
+						
+					}
+					?>
