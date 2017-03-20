@@ -149,18 +149,21 @@ $resposta=$freelancer2->buscarId();
   <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
 
-       <form autocomplete="off">
-         <div class="input-field col s12">
-          <i class="material-icons prefix">textsms</i>
-          <input type="text" id="autocomplete-input" placeholder="O que está procurando?"class="autocomplete">
-        </div>
+      <form action="../../pesquisar.php" autocomplete="off">
+       <div class="input-field col s12">
+        <i class="material-icons prefix">textsms</i>
+        <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete">
+      </div>
 
 
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action left modal-close waves-effect waves-green btn-flat">Pesquisar</a>
-      </div>
-    </form>
+    </div>
+    <div class="modal-footer">
+      <button class="left btn waves-effect waves-light" type="submit">Pesquisar
+        <i class="material-icons left">search</i>
+      </button>
+
+    </div>
+  </form>
   </div>
 </div>
 
@@ -178,9 +181,10 @@ jQuery(window).load(function() {
 
 $(document).ready(function () {$('input.autocomplete').autocomplete({
   data: {
-    "Apple": null,
-    "Microsoft": null,
-    "Google": null
+
+    <?php $filtro= file_get_contents("../../includes/filtro.html");
+    echo $filtro; ?>
+    
   }});});
 
 
