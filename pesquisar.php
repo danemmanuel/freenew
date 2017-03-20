@@ -79,128 +79,143 @@ $chave=$servicos->buscaChave();
 
 <?php if ($chave!=NULL) { ?>
 
-<div class="row">
-  <div class="col m12 s12">
-    <div class="center title" style="margin-top:100px;">Profissionais que oferecem <?php echo $q ?></div>
-    <?php 
 
-    
-    require_once 'conta/php/class/areaatuacao.class.php';
-    $areaatuacao= new areaatuacao();
-
-    $areaatuacao->buscarCategoria();
-    
-    foreach ($chave as $lin) {
-      $freelancer2->setId($lin['idfreelancer']);
-      $buscarcategoria=$freelancer2->buscarAll();
-      foreach ($buscarcategoria as $row) {
+<?php 
 
 
-        ?>
+require_once 'conta/php/class/areaatuacao.class.php';
+$areaatuacao= new areaatuacao();
 
-        <div class="col m3 s12">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="conta/f/<?php echo $row['urlavatar'] ?>">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4"><?php echo $row['nome'] ?><i class="material-icons right">more_vert</i></span>
+$areaatuacao->buscarCategoria();
 
-            </div>
-            <div class="card-reveal">
-              <?php 
-
-              $idf=$row['idfreelancer'];
-              $areaatuacao->setIdFreelancer($idf);
-              $resp4=$areaatuacao->buscar();
-
-              foreach ($resp4 as $row4) { ?>
-              <span class="nomearea card-title text-darken-4"><?php  echo $row4['nomearea']; ?><i class="material-icons right">close</i></span>
+foreach ($chave as $lin) {
+  $freelancer2->setId($lin['idfreelancer']);
+  $buscarcategoria=$freelancer2->buscarAll();
+  if ($buscarcategoria!=NULL) {
 
 
 
-              <?php } ?>
+    foreach ($buscarcategoria as $row) {
 
-              <div class="resumo"><?php echo substr($row['resumo'], 0, 150); ?> [...]</div>
-              <div class="nomearea">O que posso oferecer?</div>
-              <div class="xip">
-              <?php
 
-              $servicos->setIdFreelancer($idf);
-              $services=$servicos->buscar();
-
-              foreach ($services as $rowservice) { ?>
-              <div class="chip">
-                <?php echo $rowservice['nomeservico']; ?>
+      ?>
+      <div class="row">
+        <div class="col m12 s12">
+          <div class="center title" style="margin-top:100px;">Profissionais que ofereçam <?php echo $q ?></div>
+          <div class="col m3 s12">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="conta/f/<?php echo $row['urlavatar'] ?>">
               </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><?php echo $row['nome'] ?><i class="material-icons right">more_vert</i></span>
 
-              <?php }
-
-              ?>
               </div>
-              <a href="profissional.php?id=<?php echo $row['idfreelancer'] ?>"><button class="btn-large waves-effect waves-light" type="submit" name="action">Visualizar Perfil
+              <div class="card-reveal">
+                <?php 
 
-              </button></a>
+                $idf=$row['idfreelancer'];
+                $areaatuacao->setIdFreelancer($idf);
+                $resp4=$areaatuacao->buscar();
+
+                foreach ($resp4 as $row4) { ?>
+                <span class="nomearea card-title text-darken-4"><?php  echo $row4['nomearea']; ?><i class="material-icons right">close</i></span>
+
+
+
+                <?php } ?>
+
+                <div class="resumo"><?php echo substr($row['resumo'], 0, 150); ?> [...]</div>
+                <div class="nomearea">O que posso oferecer?</div>
+                <div class="xip">
+                  <?php
+
+                  $servicos->setIdFreelancer($idf);
+                  $services=$servicos->buscar();
+
+                  foreach ($services as $rowservice) { ?>
+                  <div class="chip">
+                    <?php echo $rowservice['nomeservico']; ?>
+                  </div>
+
+                  <?php }
+
+                  ?>
+                </div>
+                <a href="profissional.php?id=<?php echo $row['idfreelancer'] ?>"><button class="btn-large waves-effect waves-light" type="submit" name="action">Visualizar Perfil
+
+                </button></a>
+              </div>
             </div>
           </div>
+
+
+          <?php } }else{ ?>
+          <div class="row">
+        <div class="col m12 s12 center">
+          <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que ofereçam <?php echo $q ?> :(</div>
+          <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
+
         </div>
-
-
-        <?php } } ?>
-
-
       </div>
-    </div>
-<?php } else {?>
-
-<div class="row">
-  <div class="col m12 s12 center">
-    <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que oferecam <?php echo $q ?> :(</div>
-     <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
-
-  </div>
-</div>
-<?php } ?>
+      <?php
 
 
+          } } ?>
 
 
-  </body>
+        </div>
+      </div>
+      <?php } else {?>
 
-  <script type="text/javascript"> 
+      <div class="row">
+        <div class="col m12 s12 center">
+          <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que oferecam <?php echo $q ?> :(</div>
+          <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
 
-  $(document).ready(function () {$('input.autocomplete2').autocomplete({
-    data: {
-      <?php $filtro= file_get_contents("includes/filtro.html");
-      echo $filtro; ?>
-    }});});
+        </div>
+      </div>
+      <?php } ?>
 
-  jQuery(window).load(function() { 
-    jQuery("#progress").delay(0).fadeOut("slow"); 
-  }); 
 
-  </script>
-  <script type="text/javascript">
-  $(document).ready(function () {
-    $('.slider').slider({full_width: true});
-  });
 
-  $(".button-collapse").sideNav();
 
-  $('.button-collapse').sideNav({
+    </body>
+
+    <script type="text/javascript"> 
+
+    $(document).ready(function () {$('input.autocomplete2').autocomplete({
+      data: {
+        <?php $filtro= file_get_contents("includes/filtro.html");
+        echo $filtro; ?>
+      }});});
+
+    jQuery(window).load(function() { 
+      jQuery("#progress").delay(0).fadeOut("slow"); 
+    }); 
+
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('.slider').slider({full_width: true});
+    });
+
+    $(".button-collapse").sideNav();
+
+    $('.button-collapse').sideNav({
       menuWidth: 300, // Default is 300
       edge: 'left', // Choose the horizontal origin
       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
       draggable: true // Choose whether you can drag to open on touch screens
     }
     );
-  $(document).ready(function() {
-    $('select').material_select();
-  });
+    $(document).ready(function() {
+      $('select').material_select();
+    });
 
-  $('.dropdown-button').dropdown({
-    inDuration: 300,
-    outDuration: 225,
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
       constrainWidth: false, // Does not change width of dropdown to that of the activator
       hover: false, // Activate on hover
       gutter: 0, // Spacing from edge
@@ -210,12 +225,12 @@ $chave=$servicos->buscaChave();
     }
     );
 
-  $(document).ready(function(){
+    $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
   });
 
 
 
-  </script>
-  </html>
+    </script>
+    </html>
