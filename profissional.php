@@ -2,6 +2,7 @@
 
 session_start();
 
+$idfreelancer=NULL;
 if (isset($_SESSION['idfreelancer'])) {
   $idfreelancer=$_SESSION['idfreelancer'];
 }
