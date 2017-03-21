@@ -9,10 +9,11 @@ if(isset($_SESSION['idcliente'])){
   $cliente->setId($idcliente);  
   $result = $cliente->buscarId();
 
+  $sexo=$result['sexo'];
   $telefonecliente=$result['telefone'];
   $nomecliente=$result['nome'];
   $emailcliente=$result['email'];
-      $datacliente=$result['datanascimento'];
+  $datacliente=$result['datanascimento'];
   $datanova = date("d-m-Y", strtotime($datacliente));
 
   
@@ -122,10 +123,30 @@ if(isset($_SESSION['idcliente'])){
               <div class="form-group">
                 <label>Sexo:</label><br>
 
+               <?php 
+
+                if ($sexo=='masculino') { ?>
+
                 <label for="masculino">Masculino</label>
                 <input type="radio" name="sexo" class="flat-red" value="masculino" id="masculino" checked>
                 <label for="feminino">Feminino</label>
                 <input type="radio" class="flat-red" name="sexo" value="feminino" id="feminino">
+
+                <?php
+
+              }
+
+
+              else{ ?>
+
+              <label for="masculino">Masculino</label>
+              <input type="radio" name="sexo" class="flat-red" value="masculino" id="masculino">
+              <label for="feminino">Feminino</label>
+              <input type="radio" class="flat-red" name="sexo" value="feminino" id="feminino" checked>
+
+              <?php
+            }
+            ?>
 
 
 
@@ -143,19 +164,10 @@ if(isset($_SESSION['idcliente'])){
                 <div class="input-group-addon">
                   <i class="fa fa-phone"></i>
                 </div>
-                <input id="telefone" type="text" class="form-control input-lg" name="telefone" value="<?php echo $telefonecliente?>" data-inputmask='"mask": "(99) 99999-9999"' data-mask>
+                <input id="telefone" type="text" class="form-control input-lg" name="telefone" value="<?php echo $telefonecliente ?>" data-inputmask='"mask": "(99) 99999-9999"' data-mask>
               </div>
             </div>
 
-            <div class="col-md-6 col-xs-12">
-              <label for="telefone">Telefone</label>
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-phone"></i>
-                </div>
-                <input id="telefone" type="text" class="form-control input-lg"  data-inputmask='"mask": "(99) 99999-9999"' data-mask>
-              </div>
-            </div>
 
           </div></br>
           <div class="row">

@@ -7,7 +7,7 @@ $freela->setId($idfreelancer);
 $resp2=$freela->buscarId();
 
 
-if (isset($idfreelancer)) { ?>
+if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
 
 <nav>
   <div class="nav-wrapper">
@@ -16,33 +16,45 @@ if (isset($idfreelancer)) { ?>
     <ul class="left hide-on-med-and-down">
       <li>
        <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
-      </li>
+     </li>
 
-    </ul>
+   </ul>
 
 
-    <ul class="right hide-on-med-and-down">
-      <li><a href="conta/f"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
-      <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+   <ul class="right hide-on-med-and-down">
+    <li><a href="<?php if (isset($_SESSION['idcliente'])) {
+      echo 'conta/c';
+    }elseif(isset($_SESSION['idfreelancer'])){
+      echo 'conta/f';
+    } ?>"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
+    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
 
-    </ul>
+  </ul>
 
-    <ul class="side-nav" id="mobile-demo">
-      <li><div class="userView">
-        <div class="background">
-          <img src="img/office.jpg">
-        </div>
-        <a href="#!user"><img class="circle" src="conta/f/<?php  echo $resp2['urlavatar']; ?>"></a>
-        <a href="#!name"><span class="white-text name"><?php  echo $resp2['nome']; ?></span></a>
-        <a href="#!email"><span class="white-text email"><?php  echo $resp2['email']; ?></span></a>
-      </div></li>
+  <ul class="side-nav" id="mobile-demo">
+    <li><div class="userView">
+      <div class="background">
+        <img src="img/office.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="<?php if (isset($_SESSION['idcliente'])) {
+      echo 'conta/c/';
+    }elseif(isset($_SESSION['idfreelancer'])){
+      echo 'conta/f/';
+    } echo $resp2['urlavatar']; ?>"></a>
+      <a href="#!name"><span class="white-text name"><?php  echo $resp2['nome']; ?></span></a>
+      <a href="#!email"><span class="white-text email"><?php  echo $resp2['email']; ?></span></a>
+    </div></li>
 
-         <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
+    <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
 
     <li><div class="divider"></div></li>
 
-    <li><a href="conta/f"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
-   <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+    <li><a href="<?php if (isset($_SESSION['idcliente'])) {
+      echo 'conta/c';
+    }elseif(isset($_SESSION['idfreelancer'])){
+      echo 'conta/f';
+    } ?>"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
+    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
     
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
@@ -67,7 +79,7 @@ if (isset($idfreelancer)) { ?>
      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
      <ul class="left hide-on-med-and-down ">
       <li>
-         <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
+       <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
      </li>
    </ul>
 
@@ -79,18 +91,18 @@ if (isset($idfreelancer)) { ?>
   <ul class="side-nav" id="mobile-demo">
 
 
-      
-        <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
-   
 
-  <li><div class="divider"></div></li>
-  <li><a href="login"><i class="material-icons left">launch</i>Login</a></li>
-  <li><a href="cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+    <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
 
 
+    <li><div class="divider"></div></li>
+    <li><a href="login"><i class="material-icons left">launch</i>Login</a></li>
+    <li><a href="cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
 
-</ul>
-<!-- Dropdown Structure -->
+
+
+  </ul>
+  <!-- Dropdown Structure -->
 
 
 

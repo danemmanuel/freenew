@@ -1,10 +1,18 @@
 <?php 
 session_start();
+
+
 $idfreelancer=NULL;
+$idcliente=NULL;
 
 if (isset($_SESSION['idfreelancer'])) {
-  $idfreelancer=$_SESSION['idfreelancer'];
+   $idfreelancer=$_SESSION['idfreelancer'];
 }
+
+if (isset($_SESSION['idcliente'])) {
+   $idcliente=$_SESSION['idcliente'];
+}
+
 
 require_once '../../conta/php/class/freelancer.class.php';
 $freelancer2= new freelancer();
@@ -30,17 +38,7 @@ $resposta=$freelancer2->buscarId();
 </head>
 
 <body>
-  <script type="text/javascript">
-  $('input.autocomplete').autocomplete({
-    data: {
-      "Apple": null,
-      "Microsoft": null,
-      "Google": 'http://placehold.it/250x250'
-    },
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-  });
 
-  </script>
   <?php 
 
   require_once '../../conta/php/class/freelancer.class.php';
@@ -49,9 +47,9 @@ $resposta=$freelancer2->buscarId();
   $resp2=$freela->buscarId();
 
 
-  if (isset($idfreelancer)) {
+if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { 
 
-    header("location:../../conta.php");
+    header("location:../../conta");
     ?>
 
 
@@ -69,9 +67,10 @@ $resposta=$freelancer2->buscarId();
      </li>
    </ul>
 
-   <ul class="right hide-on-med-and-down">
-    <li><a href=""><i class="material-icons left">launch</i>Login</a></li>
-    <li><a href="../../cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+    <ul class="right hide-on-med-and-down">
+    <li><a href="../../conta"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
+    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+
   </ul>
 
   <ul class="side-nav" id="mobile-demo">

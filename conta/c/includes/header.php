@@ -18,9 +18,9 @@ $urlavatar=$result['urlavatar'];
   <!-- Logo -->
   <a href="../../" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>Jobs</b></span>
+    <span class="logo-mini"><b>Procurar</b></span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Procurar</b> Jobs</span><br>
+    <span class="logo-lg"><b>Procurar Profissionais</b> </span><br>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">

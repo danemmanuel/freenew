@@ -123,9 +123,6 @@ if(isset($_SESSION['idfreelancer'])){
               }
 
 
-
-
-
               else{ ?>
 
               <label for="masculino">Masculino</label>

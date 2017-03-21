@@ -1,8 +1,14 @@
 <?php 
 session_start();
 $idfreelancer=NULL;
+$idcliente=NULL;
+
 if (isset($_SESSION['idfreelancer'])) {
-  $idfreelancer=$_SESSION['idfreelancer'];
+   $idfreelancer=$_SESSION['idfreelancer'];
+}
+
+if (isset($_SESSION['idcliente'])) {
+   $idcliente=$_SESSION['idcliente'];
 }
 
 require_once 'includes/freelancer.php';
@@ -283,7 +289,7 @@ $servicos= new servicos();
   <div class="row" style="margin-left:10%;margin-right:10%;">
     <div class="col m6 s12">
       <ul class="collapsible" data-collapsible="accordion">
-        
+
         <li>
           <div class="collapsible-header">
             <i class="material-icons">zoom_in</i>Que tipo de trabalho pode ser feito?
@@ -296,7 +302,7 @@ $servicos= new servicos();
         </li>
         
         <li>
-          
+
           <div class="collapsible-header">
             <i class="material-icons">zoom_in</i>Como faço para encontrar o profissional certo?
           </div>
@@ -304,28 +310,28 @@ $servicos= new servicos();
             <span>
              Entre em contato com o profissional que ofereça o serviço/produto que deseja, extraia o máximo de informação que puder
              no momento da negociação e utilize seus dados para saber se o profissional se encaixa de fato em sua necessidade.
-            </span>
-          </div>
+           </span>
+         </div>
 
-        </li>
+       </li>
 
-        <li>
-          
-          <div class="collapsible-header">
-            <i class="material-icons">zoom_in</i>Como funciona o pagamento ao profissional
-          </div>
-          <div class="collapsible-body">
-            <span>
-              Toda a parte de pagamentos deixamos em sua mão para que negocie com o profissional a melhor forma para ambos.
-              Não queremos que a plataforma restrinja o pagamento à determinadas formas, estamos aqui
-              para melhorar a vida das pessoas :)
-            </span>
-          </div>
+       <li>
 
-        </li>
-      </ul>
-    </div>
+        <div class="collapsible-header">
+          <i class="material-icons">zoom_in</i>Como funciona o pagamento ao profissional
+        </div>
+        <div class="collapsible-body">
+          <span>
+            Toda a parte de pagamentos deixamos em sua mão para que negocie com o profissional a melhor forma para ambos.
+            Não queremos que a plataforma restrinja o pagamento à determinadas formas, estamos aqui
+            para melhorar a vida das pessoas :)
+          </span>
+        </div>
+
+      </li>
+    </ul>
   </div>
+</div>
 </section>
 
   <!-- <svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">

@@ -72,7 +72,7 @@ $resposta=$freelancer2->buscarId();
 
        <ul class="right hide-on-med-and-down">
         <li><a href="../../login"><i class="material-icons left">launch</i>Login</a></li>
-        <li><a href=""><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+        <li><a href="../"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
@@ -84,7 +84,7 @@ $resposta=$freelancer2->buscarId();
 
         <li><div class="divider"></div></li>
         <li><a href="../../login"><i class="material-icons left">launch</i>Login</a></li>
-        <li><a href="cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+        <li><a href="../"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
 
       </ul>
     </div>

@@ -1,123 +1,212 @@
-<?php
+<?php 
 session_start();
-if(isset($_SESSION['idfreelancer'])){
+$idfreelancer=NULL;
 
-header("location:../conta");
-}else{  ?>
-<!DOCTYPE html>
-<html lang="en">
+if (isset($_SESSION['idfreelancer'])) {
+  $idfreelancer=$_SESSION['idfreelancer'];
+}
+
+require_once '../../conta/php/class/freelancer.class.php';
+$freelancer2= new freelancer();
+$resp=$freelancer2->buscarTodos();
+
+
+$freelancer2->setId($idfreelancer);
+$resposta=$freelancer2->buscarId();
+
+?>
+
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Land.io UI Kit | Codrops</title>
-  <meta name="description" content="A free HTML template and UI Kit built on Bootstrap" />
-  <meta name="keywords" content="free html template, bootstrap, ui kit, sass" />
-  <meta name="author" content="Peter Finlan and Taty Grassini Codrops" />
-  <link rel="apple-touch-icon" sizes="57x57" href="../../img/favicon/apple-touch-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="../../img/favicon/apple-touch-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="../../img/favicon/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon/apple-touch-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="../../img/favicon/apple-touch-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="../../img/favicon/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="../../img/favicon/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="../../img/favicon/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../img/favicon/apple-touch-icon-180x180.png">
-  <link rel="icon" type="image/png" href="../../img/favicon/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="../../img/favicon/android-chrome-192x192.png" sizes="192x192">
-  <link rel="icon" type="image/png" href="../../img/favicon/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/png" href="../../img/favicon/favicon-16x16.png" sizes="16x16">
-  <link rel="manifest" href="../../img/favicon/manifest.json">
-  <link rel="shortcut icon" href="../../img/favicon/favicon.ico">
-  <meta name="msapplication-TileColor" content="#663fb5">
-  <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
-  <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
-  <meta name="theme-color" content="#663fb5">
-  <!-- Only needed Bootstrap bits + custom CSS in one file -->
-  <link rel="stylesheet" href="../../css/landio.css">
+
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../../css/materialize.css"  media="screen,projection"/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../../js/materialize.min.js"></script>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body class="bg-faded p-t-2">
-  <div class="container">
-    <h3 class="p-y-1 text-xs-center">Entre como<strong> <a href="../">Cliente</a></strong></h3>
+
+<body>
+
+  <?php 
+
+  require_once '../../conta/php/class/freelancer.class.php';
+  $freela= new freelancer();
+  $freela->setId($idfreelancer);
+  $resp2=$freela->buscarId();
+
+
+  if (isset($idfreelancer)) {
+
+    header("location:../../conta");
+    ?>
+
+
+    <?php
+
+  }else{
+    ?>
+    <nav>
+      <div class="nav-wrapper">
+       <a href="../../" class="brand-logo center"><img src="../../img/iconfree.png" style="max-width:50px;padding:3px;"></a>
+       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+       <ul class="left hide-on-med-and-down ">
+        <li>
+         <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
+       </li>
+     </ul>
+
+     <ul class="right hide-on-med-and-down">
+      <li><a href=""><i class="material-icons left">launch</i>Login</a></li>
+      <li><a href="../../cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+    </ul>
+
+    <ul class="side-nav" id="mobile-demo">
+
+
+      
+      <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
+      
+
+      <li><div class="divider"></div></li>
+      <li><a href="login"><i class="material-icons left">launch</i>Login</a></li>
+      <li><a href="cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+
+    </ul>
   </div>
 
-    <!-- WHITE navigation
-    ================================================== -->
+</nav>
 
+<div class="container">
+  <div class="section" >
 
+    <form action="loginpdo.php" autocomplete="off" method="POST">
 
-    <hr class="invisible">
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-xl-6">
-
-          <!-- Forms
-          ================================================== -->
-          <form  action="loginpdo.php" method="POST">
-            <div class="form-group has-icon-left form-control-email">
-              <label class="sr-only" for="inputEmail">Seu email</label>
-              <input type="email" class="form-control form-control-lg" id="inputEmail" name="email" placeholder="Seu email" autocomplete="off">
-            </div>
-            <div class="form-group has-icon-left form-control-password">
-              <label class="sr-only" for="inputPassword">Sua senha</label>
-              <input type="password" class="form-control form-control-lg" id="inputPassword" name="senha" placeholder="Sua senha" autocomplete="off">
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Entrar!</button>
-            <p style="text-align:center;padding:5px;">Não é cadastrado? <a href="../../cadastro/c">Cadastre-se</a></p>
-          </form>
-
-        </div>
-        <div class="col-md-6 col-xl-6">
-
-          <!-- SOCIAL buttons
-          ================================================== -->
-
-          <a href="#" class="btn btn-social btn-block bg-facebook">
-            <span class="icon-facebook"></span> Entrar com Facebook
-          </a>
-          <hr class="invisible">
-          <a href="#" class="btn btn-social btn-block bg-google">
-            <span class="icon-google"></span> Entrar com Google
-          </a>
-          <hr class="invisible">
-          <a href="#" class="btn btn-social btn-block bg-linkedin">
-            <span class="icon-linkedin"></span> Entrar com LinkedIn
-          </a>
-
-          <hr class="invisible">
-
-          <div class="text-xs-center">
-
+      <div class="row" style="margin-top:90px">
+        <div class="center title">Login</div>
+        <div class="col m6 s12">
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" type="email" class="validate" required name="email">
+            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Email</label>
           </div>
 
-          <hr class="invisible">
 
+
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">lock</i>
+            <input pattern="[a-z A-Z @ 1-9]+" id="icon_telephone" type="password" required name="senha" class="validate">
+            <label for="icon_telephone" data-error="insira uma senha valida" data-success="perfeito">Senha</label>
+          </div>
+
+
+
+          <div class="input-field col m12 s12">
+            <button type="submit" class="waves-effect waves-light btn-large">Entrar</button>
+          </div>
         </div>
-
-        <div class="clearfix hidden-xl-up"></div>
-
-        <div class="col-md-4">
-
-          <hr class="invisible">
-
-        </div>
-
-        <div class="clearfix hidden-md-up"></div>
-
-
       </div>
-    </div>
+    </form>
+    
+  </div>
+</div>
 
-    <hr class="invisible">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="js/landio.min.js"></script>
-  </body>
-  </html>
-<?php 
-  
+<?php
 }
+
 ?>
+
+
+<div id="progress" class="preloader-wrapper big active">
+  <div class="spinner-layer spinner-blue-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div><div class="gap-patch">
+    <div class="circle"></div></div>
+    <div class="circle-clipper right">
+      <div class="circle"></div></div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+
+      <form action="../../pesquisar.php" autocomplete="off">
+       <div class="input-field col s12">
+        <i class="material-icons prefix">textsms</i>
+        <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete">
+      </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button class="left btn waves-effect waves-light" type="submit">Pesquisar
+        <i class="material-icons left">search</i>
+      </button>
+
+    </div>
+  </form>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript"> 
+jQuery(window).load(function() { 
+  jQuery("#progress").delay(0).fadeOut("slow"); 
+}); 
+
+</script>
+<script type="text/javascript">
+
+$(document).ready(function () {$('input.autocomplete').autocomplete({
+  data: {
+
+    <?php $filtro= file_get_contents("../../includes/filtro.html");
+    echo $filtro; ?>
+    
+  }});});
+
+
+$(".button-collapse").sideNav();
+
+$('.button-collapse').sideNav({
+      menuWidth: 300, // Default is 300
+      edge: 'left', // Choose the horizontal origin
+      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      draggable: true // Choose whether you can drag to open on touch screens
+    }
+    );
+
+$('.dropdown-button').dropdown({
+  inDuration: 300,
+  outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+    );
+
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+
+
+</script>
+
+</html>
