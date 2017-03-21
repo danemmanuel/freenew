@@ -288,7 +288,7 @@ $anos=($date-$datanascimento);
           </div>
           <div class="input-field col m12 s12">
             <i class="material-icons prefix">phone</i>
-            <input id="icon_prefix" type="number" class="validate" required name="telefone">
+            <input id="txtTelefone" type="number" class="validate" required name="telefone">
             <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Telefonoe</label>
           </div>
 
@@ -327,7 +327,10 @@ $anos=($date-$datanascimento);
 
 </body>
 
+
+
 <script type="text/javascript"> 
+
 
 
 $(document).ready(function () {$('input.autocomplete2').autocomplete({
