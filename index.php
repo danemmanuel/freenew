@@ -287,12 +287,12 @@ $servicos= new servicos();
 <section class="fundoazul " style="margin-top:-50px;">
   <div class="center title branco" style="margin-top:40px;">Perguntas frequentes</div>
   <div class="row" style="margin-left:10%;margin-right:10%;">
-    <div class="col m6 s12">
+    <div class="col m12 s12">
       <ul class="collapsible" data-collapsible="accordion">
 
         <li>
           <div class="collapsible-header">
-            <i class="material-icons">zoom_in</i>Que tipo de trabalho pode ser feito?
+            Que tipo de trabalho pode ser feito?
           </div>
           <div class="collapsible-body">
             <span>
@@ -304,7 +304,7 @@ $servicos= new servicos();
         <li>
 
           <div class="collapsible-header">
-            <i class="material-icons">zoom_in</i>Como faço para encontrar o profissional certo?
+          Como faço para encontrar o profissional certo?
           </div>
           <div class="collapsible-body">
             <span>
@@ -318,7 +318,7 @@ $servicos= new servicos();
        <li>
 
         <div class="collapsible-header">
-          <i class="material-icons">zoom_in</i>Como funciona o pagamento ao profissional
+          Como funciona o pagamento ao profissional
         </div>
         <div class="collapsible-body">
           <span>
