@@ -79,13 +79,15 @@ if(isset($_SESSION['idfreelancer'])){
           <div class="pricing__item">
             <h3 class="pricing__title"><?php echo $row['nome']; ?></h3>
             <p class="pricing__sentence"><?php echo $row ['email'] ?></p>
+
             <ul class="pricing__feature-list">
+              <li class="pricing__feature"><b style="color:#fff">Telefone:</b> <?php echo $row['telefone']; ?></li>
               <li class="pricing__feature"><b style="color:#fff">O que deseja:</b> <?php echo $row['servico']; ?></li>
              <li class="pricing__feature"><b style="color:#fff">Observação:</b> <?php echo $row['mensagem']; ?></li>
 
            </ul>
 
-           <a  style="background-color:#D73925" href="#" class="pricing__action" onclick="javascript: if (confirm('Deseja excluir seu serviço?'))location.href='../php/functions/excluirservico.php?idservico=<?php echo $row['idservico'] ?>'"><i style="padding-left:20px" class="fa fa-fw fa-trash"></i></a>
+           <a style="background-color:#D73925" href="../php/functions/apagarticket.php?id=<?php echo $row['idmensagem'] ?>" class="pricing__action"><i style="padding-left:20px" class="fa fa-fw fa-trash"></i></a>
 
 
          </div>

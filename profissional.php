@@ -272,8 +272,8 @@ $anos=($date-$datanascimento);
       <div style="text-align:right"><a href="">
         <a href=""><i class="fa fa-close" aria-hidden="true"></i></a>
       </a></div>
-      <form action="loginpdo.php" autocomplete="off" method="GET">
-
+      <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
+        <input type="hidden" name="idfreelancer" value="<?php echo $idfreelancer ?>">
         <div class="col m6 s12">
           <div class="input-field col m12 s12">
             <i class="material-icons prefix">account_circle</i>
@@ -308,7 +308,7 @@ $anos=($date-$datanascimento);
           
           <div class="input-field col m12 s12">
             <i class="material-icons prefix">textsms</i>
-            <textarea placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
+            <textarea name="msg" placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
 
           </div>
           

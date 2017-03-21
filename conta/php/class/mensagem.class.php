@@ -48,6 +48,12 @@ class mensagem{
 	public function setMensagem($mensagem){
 		$this->mensagem=$mensagem;
 	}
+	public function getTelefone(){
+		return $this->telefone;
+	}
+	public function setTelefone($telefone){
+		$this->telefone=$telefone;
+	}
 	
 	
 	public function inserir(){
@@ -55,13 +61,14 @@ class mensagem{
 		$conect = new conexao();
 		try{
 			$stmt = $conect->conn->prepare(
-				"INSERT INTO mensagens(idfreelancer,nome,email,servico,mensagem)
-				VALUES(:idfreelancer,:nome,:email,:servico,:mensagem)");
+				"INSERT INTO mensagens(idfreelancer,nome,email,servico,mensagem,telefone)
+				VALUES(:idfreelancer,:nome,:email,:servico,:mensagem,:telefone)");
 			$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
 			$stmt->bindValue(":nome",$this->getNome());
 			$stmt->bindValue(":email",$this->getEmail());
 			$stmt->bindValue(":servico",$this->getServico());
 			$stmt->bindValue(":mensagem",$this->getMensagem());
+			$stmt->bindValue(":telefone",$this->getTelefone());
 
 			return $stmt->execute();
 		}catch(PDOException $e){
@@ -165,6 +172,7 @@ class mensagem{
 					"idfreelancer"=>$row['idfreelancer'],
 					"nome"=>$row['nome'],
 					"email"=>$row['email'],
+					"telefone"=>$row['telefone'],
 					"mensagem"=>$row['mensagem'],
 					"servico"=>$row['servico']);
 				array_push($resposta, $temp);

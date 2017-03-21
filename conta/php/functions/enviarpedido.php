@@ -3,9 +3,10 @@
  require_once '../class/mensagem.class.php';
 
 
-$idfreelancer=$_POST['idfreelancer'];
+ $idfreelancer=$_POST['idfreelancer'];
 $nome=$_POST['nome'];
 $email=$_POST['email'];
+$telefone=$_POST['telefone'];
 $servico=$_POST['servico'];
 $msg=$_POST['msg'];
 
@@ -15,6 +16,7 @@ $msg=$_POST['msg'];
  $mensagem->setEmail($email);
  $mensagem->setServico($servico);
  $mensagem->setMensagem($msg);
+  $mensagem->setTelefone($telefone);
  $mensagem->inserir();
 
  ?>
