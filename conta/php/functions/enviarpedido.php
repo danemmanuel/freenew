@@ -18,5 +18,6 @@ $msg=$_POST['msg'];
  $mensagem->setMensagem($msg);
   $mensagem->setTelefone($telefone);
  $mensagem->inserir();
+ header("location:../../../index.php");
 
  ?>

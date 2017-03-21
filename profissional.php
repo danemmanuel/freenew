@@ -273,7 +273,7 @@ $anos=($date-$datanascimento);
         <a href=""><i class="fa fa-close" aria-hidden="true"></i></a>
       </a></div>
       <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
-        <input type="hidden" name="idfreelancer" value="<?php echo $idfreelancer ?>">
+        <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
         <div class="col m6 s12">
           <div class="input-field col m12 s12">
             <i class="material-icons prefix">account_circle</i>
