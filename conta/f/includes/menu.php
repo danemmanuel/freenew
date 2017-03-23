@@ -13,7 +13,7 @@
         <ul class="treeview-menu">
           <li><a href="index.php"><i class="fa fa-edit"></i> Dados Pessoais</a></li>
           <li><a target="" href="avatar.php"><i class="fa fa-picture-o"></i> Trocar Avatar</a></li>
-          <li><a target="avatar" href="alterarsenha.php"><i class="fa fa-key"></i> Alterar Senha</a></li>
+          <li><a href="alterarsenha.php"><i class="fa fa-key"></i> Alterar Senha</a></li>
           <li><a href="excluirconta.php"><i class="fa fa-times"></i> Excluir Conta</a></li>
         </ul>
       </li>

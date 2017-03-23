@@ -99,23 +99,29 @@ $resposta=$freelancer2->buscarId();
 
         <div class="row" style="margin-top:90px">
           <h4 class="center title">Cadaste-se</h4>
-          <div class="col m6 s12">
-            <div class="input-field col m12 s12">
+          <div class="col m12 s12">
+            <div class="input-field col m6 s12">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" type="text" class="validate" required name="nome">
               <label for="icon_prefix" data-error="insira um email valido" name="nome" data-success="perfeito">Seu Nome</label>
             </div>
 
-            <div class="input-field col m12 s12">
+            <div class="input-field col m6 s12">
               <i class="material-icons prefix">email</i>
               <input id="icon_prefix" type="email" class="validate" autocomplete="off" required name="email">
               <label for="icon_prefix" data-error="insira um email valido"  data-success="perfeito">Seu Email</label>
             </div>
 
-            <div class="input-field col m12 s12">
+            <div class="input-field col m6 s12">
               <i class="material-icons prefix">lock</i>
               <input pattern="[a-z A-Z @ 1-9]+" id="icon_telephone" type="password"  name="senha" required name="senha" class="validate">
               <label for="icon_telephone" data-error="insira uma senha valida" data-success="perfeito">Senha</label>
+            </div>
+
+            <div class="input-field col m6 s12">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_telephone" type="tel" name="telefone" class="validate">
+              <label for="icon_telephone">Telephone</label>
             </div>
 
 

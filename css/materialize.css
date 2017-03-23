@@ -1,4 +1,5 @@
 
+
 .resumo{
   font-size:15px;
   text-align: justify;
@@ -4096,6 +4097,13 @@ video.responsive-video {
     height: 56px;
     margin: 0 18px;
   }
+    nav .button-collapse2 {
+    float: right;
+    position: relative;
+    z-index: 1;
+    height: 56px;
+    margin: 0 18px;
+  }
 
   nav .button-collapse i {
     height: 56px;
@@ -7439,7 +7447,8 @@ input[type=range]:focus::-ms-fill-upper {
   animation: container-rotate 1568ms linear infinite;
   position: absolute;
   left: 49%;
-  top: 49%
+  top: 49%;
+  z-index:9999999999999999999999;
 
 }
 

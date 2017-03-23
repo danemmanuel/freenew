@@ -96,11 +96,14 @@ class freelancer{
 		$conect = new conexao();
 		try{
 			$stmt = $conect->conn->prepare(
-				"INSERT INTO freelancer(nome,email,senha,ativo,urlavatar)
-				VALUES(:nome,:email,:senha,'1','avatar/default.png')");
+				"INSERT INTO freelancer(nome,email,senha,telefone,datanascimento,ativo,urlavatar)
+				VALUES(:nome,:email,:senha,:telefone,:datanascimento,'1','avatar/default.png')");
 			$stmt->bindValue(":nome",$this->getNome());
 			$stmt->bindValue(":email",$this->getEmail());
 			$stmt->bindValue(":senha",$this->getSenha());
+			$stmt->bindValue(":telefone",$this->getTelefone());
+			$stmt->bindValue(":datanascimento",$this->getDatanascimento());
+
 			return $stmt->execute();
 		}catch(PDOException $e){
 			echo $e->getMessage();

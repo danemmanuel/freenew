@@ -20,7 +20,7 @@ if ( isset( $_FILES[ 'arquivo' ][ 'name' ] ) && $_FILES[ 'arquivo' ][ 'error' ] 
     
     function verificaTamanho($tamanho){
 
-        if ($tamanho<=999000000) {
+        if ($tamanho<=5000000) {
             $statusTamanho=1;
             return $statusTamanho;
 
@@ -66,20 +66,13 @@ if ( isset( $_FILES[ 'arquivo' ][ 'name' ] ) && $_FILES[ 'arquivo' ][ 'error' ] 
                     $freelancer->setId($idfreelancer);
                     $freelancer->setUrlAvatar($destino);
                     $freelancer->alterarAvatar();
-
-                    echo "
-                    <script>
-                    alert('Seu avatar foi atualizado!');
-                    window.location='avatar.php'; 
-                    </script>
-
-                    ";
-                    
+                    header("location:avatar.php");
+                   
                 }elseif ($tamanhoVerificado==0) {
 
                     echo "
                     <script>
-                    alert('A imagem deve possuir no máximo 1MB!');
+                    alert('A imagem deve possuir no máximo 5MB!');
                     window.location='avatar.php'; 
                     </script>
 

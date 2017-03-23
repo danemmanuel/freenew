@@ -68,8 +68,8 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) {
    </ul>
 
     <ul class="right hide-on-med-and-down">
-    <li><a href="../../conta"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
-    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+    <li><a href=""><i class="material-icons left">launch</i>Login</a></li>
+    <li><a href="../../cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
 
   </ul>
 
@@ -81,8 +81,8 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) {
    
 
   <li><div class="divider"></div></li>
-  <li><a href="login"><i class="material-icons left">launch</i>Login</a></li>
-  <li><a href="cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
+  <li><a href=""><i class="material-icons left">launch</i>Login</a></li>
+  <li><a href="../../cadastro"><i class="material-icons left">mode_edit</i>Cadastre-se</a></li>
 
 </ul>
 </div>

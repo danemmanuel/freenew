@@ -9,6 +9,7 @@ class cliente{
 	private $senha;
 	private $email;
 	private $datanascimento;
+	private $urlavatar;
 
 
 	public function getId(){
@@ -53,6 +54,12 @@ class cliente{
 	public function setTelefone($telefone){
 		$this->telefone=$telefone;
 	}
+	public function getUrlAvatar(){
+		return $this->urlavatar;
+	}
+	public function setUrlAvatar($urlavatar){
+		$this->urlavatar=$urlavatar;
+	}
 	
 	
 	public function inserir(){
@@ -60,11 +67,12 @@ class cliente{
 		$conect = new conexao();
 		try{
 			$stmt = $conect->conn->prepare(
-				"INSERT INTO cliente(nome,email,senha,ativo,urlavatar)
-				VALUES(:nome,:email,:senha,'1','avatar/default.png')");
+				"INSERT INTO cliente(nome,email,telefone,senha,ativo,urlavatar)
+				VALUES(:nome,:email,:telefone,:senha,'1','avatar/default.png')");
 			$stmt->bindValue(":nome",$this->getNome());
 			$stmt->bindValue(":email",$this->getEmail());
 			$stmt->bindValue(":senha",$this->getSenha());
+			$stmt->bindValue(":telefone",$this->getTelefone());
 
 			return $stmt->execute();
 		}catch(PDOException $e){
@@ -76,8 +84,8 @@ class cliente{
 		$conect = new conexao();
 		try{
 			$stmt = $conect->conn->prepare(
-				"UPDATE cliente set urlavatar=:urlavatar where idmensagem=:idmensagem");
-			$stmt->bindValue(":idmensagem",$this->getId());
+				"UPDATE cliente set urlavatar=:urlavatar where idcliente=:idcliente");
+			$stmt->bindValue(":idcliente",$this->getId());
 			$stmt->bindValue(":urlavatar",$this->getUrlAvatar());
 			return $stmt->execute();
 		}catch(PDOException $e){

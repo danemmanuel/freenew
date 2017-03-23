@@ -62,7 +62,7 @@ $chave=$servicos->buscaChave();
        <form action="" autocomplete="off">
          <div class="input-field col s12">
           <i class="material-icons prefix">textsms</i>
-          <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
+          <input pattern="[a-z A-Z âêîôûãõáéíóú]+" required type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
         </div>
 
 
@@ -77,6 +77,10 @@ $chave=$servicos->buscaChave();
 
   </div>
 </div>
+
+<div class="row">
+        <div class="col m12 s12">
+          <div class="center title" style="margin-top:100px;">Profissionais que ofereçam <?php echo $q ?></div>
 
 <?php if ($chave!=NULL) { ?>
 
@@ -100,9 +104,7 @@ foreach ($chave as $lin) {
 
 
       ?>
-      <div class="row">
-        <div class="col m12 s12">
-          <div class="center title" style="margin-top:100px;">Profissionais que ofereçam <?php echo $q ?></div>
+      
           <div class="col m3 s12">
             <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
@@ -154,7 +156,7 @@ foreach ($chave as $lin) {
           <?php } }else{ ?>
           <div class="row">
             <div class="col m12 s12 center">
-              <div class="center title" style="margin-top:100px;">Infelizmente não há pessoas que ofereçam <?php echo $q ?> :(</div>
+             
               <a href="#modal1" class="waves-effect waves-light btn">Pesquise por outra coisa</a>
 
             </div>

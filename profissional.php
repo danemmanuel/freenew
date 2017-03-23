@@ -14,11 +14,13 @@ require_once 'includes/freelancer.php';
 require_once 'conta/php/class/areaatuacao.class.php';
 require_once 'conta/php/class/servicos.class.php';
 require_once 'conta/php/class/habilidades.class.php';
+require_once 'conta/php/class/cliente.class.php';
 
 $free= new freelancer();
 $servicos= new servicos();
 $areaatuacao= new areaatuacao();
 $habilidades= new habilidades();
+$cliente= new cliente();
 
 
 $free->setId($idf);
@@ -32,6 +34,12 @@ $services=$servicos->buscarTodos();
 
 $habilidades->setIdFreelancer($idf);
 $habilidade=$habilidades->buscarTodos();
+
+if (isset($_SESSION['idcliente'])) {
+  $cliente->setId($_SESSION['idcliente']);
+  $respcliente=$cliente->buscarId();
+}
+
 
 $idfree=$resposta['idfreelancer'];
 $nomefreelancer=$resposta['nome'];
@@ -54,6 +62,7 @@ $anos=($date-$datanascimento);
 <head>
 
   <!--Import Google Icon Font-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/component.css" />
   <!--Import materialize.css-->
@@ -109,7 +118,7 @@ $anos=($date-$datanascimento);
        <form action="pesquisar.php" autocomplete="off">
          <div class="input-field col s12">
           <i class="material-icons prefix">textsms</i>
-          <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
+          <input pattern="[a-z A-Z âêîôûãõáéíóú]+" required type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
         </div>
 
 
@@ -207,52 +216,52 @@ $anos=($date-$datanascimento);
 
 <?php if ($services!=NULL) { ?>
 <img src="img/separator.jpg" style="max-width:100%;">
-  <section class="services">
-    <div class="row">
-      <div class="col m12 s12 center">
-        <div class="title branco">Meus Serviços</div>
+<section class="services">
+  <div class="row">
+    <div class="col m12 s12 center">
+      <div class="title branco">Meus Serviços</div>
 
-        <?php  foreach ($services as $service) { ?>
-        <div class="col m3">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="img/suitcase.jpg">
-            </div>
-            <div class="card-content">
-              <span class="nomearea activator card-title text-darken-4"><?php echo $service['nomeservico'] ?><i class="material-icons right">more_vert</i></span>
+      <?php  foreach ($services as $service) { ?>
+      <div class="col m3">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="img/suitcase.jpg">
+          </div>
+          <div class="card-content">
+            <span class="nomearea activator card-title text-darken-4"><?php echo $service['nomeservico'] ?><i class="material-icons right">more_vert</i></span>
 
-            </div>
-            <div class="card-reveal">
-              <span class="nomearea card-title text-darken-4" ><?php echo $service['nomeservico'] ?><i class="material-icons right">close</i></span>
-              <p style="text-align:justify; font-size:15px;color:#565656;"><?php  echo substr($service['descricao'], 0, 150); ?></p>
-              <div class="preco">R$ <?php echo $service['preco'] ?>,00 <?php echo $service['tipo'] ?></div>
-            </div>
+          </div>
+          <div class="card-reveal">
+            <span class="nomearea card-title text-darken-4" ><?php echo $service['nomeservico'] ?><i class="material-icons right">close</i></span>
+            <p style="text-align:justify; font-size:15px;color:#565656;"><?php  echo substr($service['descricao'], 0, 150); ?></p>
+            <div class="preco">R$ <?php echo $service['preco'] ?>,00 <?php echo $service['tipo'] ?></div>
           </div>
         </div>
-        <?php }
-        ?>
       </div>
+      <?php }
+      ?>
     </div>
-  </section>
-  <?php } ?>
+  </div>
+</section>
+<?php } ?>
 
-  <?php if ($habilidade!=NULL) { ?>
-  <section>
-    <div class="row">
-      <div class="col m12 s12 center">
-        <div class="title">Habilidades</div>
+<?php if ($habilidade!=NULL) { ?>
+<section>
+  <div class="row">
+    <div class="col m12 s12 center">
+      <div class="title">Habilidades</div>
 
-        <?php 
-        foreach ($habilidade as $skill) { ?>
-        <div class="chip">
-          <?php echo $skill['nomehabilidade']; ?>: <?php echo $skill['nivel']; ?>
-        </div>
-
-        <?php } ?>
+      <?php 
+      foreach ($habilidade as $skill) { ?>
+      <div class="chip">
+        <?php echo $skill['nomehabilidade']; ?>: <?php echo $skill['nivel']; ?>
       </div>
+
+      <?php } ?>
     </div>
-  </section>
-  <?php } ?>
+  </div>
+</section>
+<?php } ?>
 
 
 
@@ -272,11 +281,66 @@ $anos=($date-$datanascimento);
       <div style="text-align:right"><a href="">
         <a href=""><i class="fa fa-close" aria-hidden="true"></i></a>
       </a></div>
+
+      <?php if (isset($_SESSION['idcliente'])) { ?>
+
+      <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
+        <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
+        <div class="col m6 s12">
+          
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" type="text" class="validate" value="<?php echo $respcliente['nome'] ?>"  required name="nome">
+            <label for="icon_prefix" data-error="insira um nome válido" data-success="perfeito">Seu Nome</label>
+          </div>
+
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">email</i>
+            <input id="icon_prefix" type="email" class="validate" value="<?php echo $respcliente['email'] ?>" required name="email">
+            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Email</label>
+          </div>
+
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">phone</i>
+            <input id="txtTelefone" type="tel" class="validate" value="<?php echo $respcliente['telefone'] ?>" required name="telefone">
+            <label for="icon_prefix" data-error="insira um telefone válido" data-success="perfeito">Seu Telefonoe</label>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">work</i>
+            <select name="servico">
+              <option value="" disabled selected>Qual serviço está procurando?</option>
+              <?php 
+
+              foreach ($services as $service) { ?>
+              <option value="<?php  echo $service['nomeservico'] ?>"> <?php echo $service['nomeservico']?></option>
+              <?php }
+              ?>
+              
+            </select>
+          </div>
+          
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix">textsms</i>
+            <textarea name="msg" placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
+
+          </div>
+          
+          <button type="submit" class="waves-effect waves-light btn-large">Enviar Pedido</button>
+
+        </div>
+
+      </form>
+
+
+      <?php }else{ ?>
+
       <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
         <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
         <div class="col m6 s12">
           <div class="input-field col m12 s12">
             <i class="material-icons prefix">account_circle</i>
+            
             <input id="icon_prefix" type="text" class="validate" required name="nome">
             <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Nome</label>
           </div>
@@ -317,6 +381,12 @@ $anos=($date-$datanascimento);
         </div>
 
       </form>
+      
+
+      <?php } ?>
+
+
+
 
     </div>
   </div>

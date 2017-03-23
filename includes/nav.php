@@ -13,6 +13,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
   <div class="nav-wrapper">
     <a href="index.php" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
     <ul class="left hide-on-med-and-down">
       <li>
        <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>
@@ -77,6 +78,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
     <div class="nav-wrapper">
      <a href="index.php" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+   
      <ul class="left hide-on-med-and-down ">
       <li>
        <a href="#modal1" class="waves-effect waves-light btn"><i class="material-icons left">search</i>O que procura?</a>

@@ -23,14 +23,13 @@ $servicos= new servicos();
 
 <html>
 <head>
-  <meta charset="UTF-8">
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/component.css" />
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-  
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <!--Let browser know website is optimized for mobile-->
@@ -79,7 +78,8 @@ $servicos= new servicos();
        <form action="pesquisar.php" autocomplete="off">
          <div class="input-field col s12">
           <i class="material-icons prefix">textsms</i>
-          <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
+    
+          <input pattern="[a-z A-Z âêîôûãõáéíóú]+" required type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">
         </div>
 
 
@@ -96,7 +96,7 @@ $servicos= new servicos();
 <section>
   <div class="row">
     <div class="col m12 s12">
-      <div class="center title">Novos Freelancers</div>
+      <div class="center title">Novos Profissionais</div>
       <?php 
 
       require_once 'conta/php/class/areaatuacao.class.php';
@@ -242,7 +242,7 @@ $servicos= new servicos();
         </div>
 
         <div class="col m4 s12" style="margin-top:20px;margin-bottom:20px;">
-         <div class="center"><i class="large material-icons">thumb_up</i></div>
+         <div class="center"><i class="large material-icons">attach_money</i></div>
          <div class="center anuncio">Ganhe uma renda extra</div>
          <div class="subanuncio">
           Não dependa mais de recomendações de amigos, faça seu próprio marketing para receber uma renda extra.
@@ -268,12 +268,12 @@ $servicos= new servicos();
   </div>
 
   <div class="col m4 s12" style="margin-top:20px;margin-bottom:20px;">
-   <div class="center"><i class="large material-icons">perm_phone_msg</i></div>
+   <div class="center"><i class="large material-icons">hotel</i></div>
    <div class="center anuncio">Facilite sua vida</div>
    <div class="subanuncio">
     Nós encontraremos todos os profissionais que possam solucionar seu problema, quer ver?
   </div>
-  <center><a style="color:#fff"href="#modal1"><button class="btn waves-effect waves-light" style="color:#fff">Escreva o que deseja</a>
+  <center><a style="color:#fff"href="#modal1"><button class="btn waves-effect waves-light" style="color:#fff">Escreva o que deseja</button></a>
   </center>
 </div>
 
