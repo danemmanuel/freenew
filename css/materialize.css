@@ -4169,6 +4169,7 @@ video.responsive-video {
 
   nav ul li {
     transition: background-color .3s;
+
     float: left;
     padding: 0;
   }
@@ -4199,7 +4200,9 @@ video.responsive-video {
 
   nav ul a:hover {
     background-color: rgba(0, 0, 0, 0.1);
+
   }
+
 
   nav ul.left {
     float: left;
