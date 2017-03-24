@@ -368,7 +368,8 @@ div.bl-panel-items > div.bl-hide-current-work {
 }
 
 .bl-main > section:first-child.bl-expand {
-	background: #EE4444;
+	background: #003A50
+;
 }
 .bl-main > section:nth-child(2).bl-expand {
 	background: #F98262;
