@@ -18,7 +18,7 @@ $resposta=$freelancer2->buscarId();
 
 <html>
 <head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
@@ -171,7 +171,7 @@ $resposta=$freelancer2->buscarId();
   <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
 
-     <form action="../../pesquisar.php" autocomplete="off">
+     <form action="../../pesquisar" autocomplete="off">
        <div class="input-field col s12">
         <i class="material-icons prefix">textsms</i>
         <input type="text" id="autocomplete-input" name="q" placeholder="Escreva o nome do produto ou serviço..." class="autocomplete2">

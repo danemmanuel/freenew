@@ -11,7 +11,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
 
 <nav>
   <div class="nav-wrapper">
-    <a href="index.php" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
+    <a href="index" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <ul class="left hide-on-med-and-down">
@@ -28,7 +28,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
     }elseif(isset($_SESSION['idfreelancer'])){
       echo 'conta/f';
     } ?>"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
-    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+    <li><a href="conta/f/sair"><i class="material-icons left">trending_flat</i>Sair</a></li>
 
   </ul>
 
@@ -55,7 +55,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
     }elseif(isset($_SESSION['idfreelancer'])){
       echo 'conta/f';
     } ?>"><i class="material-icons left">dashboard</i>Minha Conta</a></li>
-    <li><a href="conta/f/sair.php"><i class="material-icons left">trending_flat</i>Sair</a></li>
+    <li><a href="conta/f/sair"><i class="material-icons left">trending_flat</i>Sair</a></li>
     
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
@@ -76,7 +76,7 @@ if ((isset($_SESSION['idfreelancer'])) or (isset($_SESSION['idcliente']))) { ?>
   ?>
   <nav>
     <div class="nav-wrapper">
-     <a href="index.php" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
+     <a href="index" class="brand-logo center"><img src="img/iconfree.png" style="max-width:50px;padding:3px;"></a>
      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
    
      <ul class="left hide-on-med-and-down ">

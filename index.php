@@ -75,7 +75,7 @@ $servicos= new servicos();
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
 
-       <form action="pesquisar.php" autocomplete="off">
+       <form action="pesquisar" autocomplete="off">
          <div class="input-field col s12">
           <i class="material-icons prefix">textsms</i>
     
@@ -148,7 +148,7 @@ $servicos= new servicos();
 
                 ?>
               </div>
-              <a href="profissional.php?id=<?php echo $row['idfreelancer'] ?>"><button class="btn-large waves-effect waves-light" type="submit" name="action">Visualizar Perfil
+              <a href="profissional?id=<?php echo $row['idfreelancer'] ?>"><button class="btn-large waves-effect waves-light" type="submit" name="action">Visualizar Perfil
 
               </button></a>
             </div>
@@ -353,6 +353,7 @@ $servicos= new servicos();
   ?>
 
 </body>
+
 
 <script type="text/javascript"> 
 
