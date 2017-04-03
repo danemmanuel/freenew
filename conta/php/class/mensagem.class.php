@@ -149,8 +149,8 @@ class mensagem{
 		$conect = new conexao();
 		try{
 			$stmt = $conect->conn->prepare(
-				"DELETE from clientes where idmensagem=:idmensagem");
-			$stmt->bindValue(":idmensagem",$this->getId());
+				"DELETE from mensagens where idmensagem=:idmensagem");
+			$stmt->bindValue(":idmensagem",$this->getIdMensagem());
 			return $stmt->execute();
 			
 		}catch(PDOException $e){

@@ -74,7 +74,11 @@ if(isset($_SESSION['idfreelancer'])){
       ?>
       <!-- Main content -->
       <section class="content">
-        <div class="resumo"> <?php echo $resp['resumo']?></div>
+        <div class="resumo"> <?php 
+
+        echo nl2br($resp['resumo']);
+
+        ?></div>
         <br>
         <form method="POST" action="../php/functions/alterarresumo.php">
           <input type="hidden" name="idfreelancer" value="<?php echo $idfreelancer ?>">
@@ -82,7 +86,7 @@ if(isset($_SESSION['idfreelancer'])){
             <div class="col-md-12 col-xs-12">
               <div class="form-group">
                 <label for="nomefreelancer">Diga um pouco sobre você <small>| Max 1000 caractéres </small></label>
-                <textarea rows="10"id="nomefreelancer"  maxlength="1000" class="form-control input-lg" name="resumo" type="text"></textarea>
+                <textarea wrap="hard" rows="10"id="nomefreelancer"  maxlength="1000" class="form-control input-lg" name="resumo" type="text"></textarea>
               </div>
             </div>
           </div>

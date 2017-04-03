@@ -169,9 +169,7 @@ $anos=($date-$datanascimento);
     </div>
 
     <div class="cv">
-      <a href=""> <button class="btn waves-effect waves-light" type="submit">Download Perfil
-      </button>
-    </a>
+      
     <a  href="#modal2"> <button class="btn waves-effect waves-light" type="submit">Contrate-me
     </button>
   </a>

@@ -109,31 +109,18 @@ if(isset($_SESSION['idfreelancer'])){
               <div class="form-group">
                 <label>Gênero</label><br>
 
-                <?php 
-
-                if ($sexo=='masculino') { ?>
+                
 
                 <label for="masculino">Masculino</label>
-                <input type="radio" name="sexo" class="flat-red" value="masculino" id="masculino" checked>
+                <input type="radio" name="sexo" class="flat-red" value="masculino" id="masculino" 
+                <?php 
+                echo ($sexo=='masculino')? " checked='checked'":'';
+                 ?>>
                 <label for="feminino">Feminino</label>
-                <input type="radio" class="flat-red" name="sexo" value="feminino" id="feminino">
-
-                <?php
-
-              }
-
-
-              else{ ?>
-
-              <label for="masculino">Masculino</label>
-              <input type="radio" name="sexo" class="flat-red" value="masculino" id="masculino">
-              <label for="feminino">Feminino</label>
-              <input type="radio" class="flat-red" name="sexo" value="feminino" id="feminino" checked>
-
-              <?php
-            }
-            ?>
-
+                <input type="radio" class="flat-red" name="sexo" value="feminino" id="feminino"
+                <?php 
+                echo ($sexo=='feminino')? " checked='checked'":'';
+                 ?>>
 
 
 
