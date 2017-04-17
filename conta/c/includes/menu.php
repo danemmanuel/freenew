@@ -17,6 +17,14 @@
           <li><a href="excluirconta.php"><i class="fa fa-times"></i> Excluir Conta</a></li>
         </ul>
       </li>
+
+      <li>
+        <a href="sair.php">
+          <i class="fa fa-envelope"></i> <span>Projetos</span>
+          <span class="pull-right-container">
+          </span>
+        </a>
+      </li>
       
 
       <li>

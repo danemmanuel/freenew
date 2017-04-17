@@ -15,12 +15,14 @@ require_once 'conta/php/class/areaatuacao.class.php';
 require_once 'conta/php/class/servicos.class.php';
 require_once 'conta/php/class/habilidades.class.php';
 require_once 'conta/php/class/cliente.class.php';
+require_once 'conta/php/class/mensagem.class.php';
 
 $free= new freelancer();
 $servicos= new servicos();
 $areaatuacao= new areaatuacao();
 $habilidades= new habilidades();
 $cliente= new cliente();
+$mensagem= new mensagem();
 
 
 $free->setId($idf);
@@ -34,6 +36,9 @@ $services=$servicos->buscarTodos();
 
 $habilidades->setIdFreelancer($idf);
 $habilidade=$habilidades->buscarTodos();
+
+$mensagem->setIdFreelancer($idf);
+$respmensagem = $mensagem->buscarTodosf();
 
 if (isset($_SESSION['idcliente'])) {
   $cliente->setId($_SESSION['idcliente']);
@@ -169,11 +174,11 @@ $anos=($date-$datanascimento);
     </div>
 
     <div class="cv">
-      
-    <a  href="#modal2"> <button class="btn waves-effect waves-light" type="submit">Contrate-me
-    </button>
-  </a>
-</div>
+
+      <a  href="#modal2"> <button class="btn waves-effect waves-light" type="submit">Contrate-me
+      </button>
+    </a>
+  </div>
 
 </div>
 </div>
@@ -263,135 +268,112 @@ $anos=($date-$datanascimento);
 
 
 
+<section>
+  <div class="row">
+    <div class="col m12 s12 center">
+      <div class="title">Histórico de Jobs</div>
 
+      <?php 
 
+      foreach ($respmensagem as $rowmensagem) { ?>
 
+      <div class="col m6 s12">
+        <?php echo $rowmensagem['nome']; ?>
+      </div>
 
-  <!-- <svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg> -->
+      <div class="col m6 s12">
+        <?php echo $rowmensagem['servico']; ?>
+      </div>
+       
+       
+     <?php }
 
-
-
-  <!-- Modal Structure -->
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <div style="text-align:right"><a href="">
-        <a href=""><i class="fa fa-close" aria-hidden="true"></i></a>
-      </a></div>
-
-      <?php if (isset($_SESSION['idcliente'])) { ?>
-
-      <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
-        <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
-        <div class="col m6 s12">
-          
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="icon_prefix" type="text" class="validate" value="<?php echo $respcliente['nome'] ?>"  required name="nome">
-            <label for="icon_prefix" data-error="insira um nome válido" data-success="perfeito">Seu Nome</label>
-          </div>
-
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">email</i>
-            <input id="icon_prefix" type="email" class="validate" value="<?php echo $respcliente['email'] ?>" required name="email">
-            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Email</label>
-          </div>
-
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">phone</i>
-            <input id="txtTelefone" type="tel" class="validate" value="<?php echo $respcliente['telefone'] ?>" required name="telefone">
-            <label for="icon_prefix" data-error="insira um telefone válido" data-success="perfeito">Seu Telefonoe</label>
-          </div>
-
-          <div class="input-field col s12">
-            <i class="material-icons prefix">work</i>
-            <select name="servico">
-              <option value="" disabled selected>Qual serviço está procurando?</option>
-              <?php 
-
-              foreach ($services as $service) { ?>
-              <option value="<?php  echo $service['nomeservico'] ?>"> <?php echo $service['nomeservico']?></option>
-              <?php }
-              ?>
-              
-            </select>
-          </div>
-          
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">textsms</i>
-            <textarea name="msg" placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
-
-          </div>
-          
-          <button type="submit" class="waves-effect waves-light btn-large">Enviar Pedido</button>
-
-        </div>
-
-      </form>
-
-
-      <?php }else{ ?>
-
-      <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
-        <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
-        <div class="col m6 s12">
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">account_circle</i>
-            
-            <input id="icon_prefix" type="text" class="validate" required name="nome">
-            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Nome</label>
-          </div>
-
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">email</i>
-            <input id="icon_prefix" type="email" class="validate" required name="email">
-            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Email</label>
-          </div>
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">phone</i>
-            <input id="txtTelefone" type="number" class="validate" required name="telefone">
-            <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Telefonoe</label>
-          </div>
-
-          <div class="input-field col s12">
-            <i class="material-icons prefix">work</i>
-            <select name="servico">
-              <option value="" disabled selected>Qual serviço está procurando?</option>
-              <?php 
-
-              foreach ($services as $service) { ?>
-              <option value="<?php  echo $service['nomeservico'] ?>"> <?php echo $service['nomeservico']?></option>
-              <?php }
-              ?>
-              
-            </select>
-          </div>
-          
-          <div class="input-field col m12 s12">
-            <i class="material-icons prefix">textsms</i>
-            <textarea name="msg" placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
-
-          </div>
-          
-          <button type="submit" class="waves-effect waves-light btn-large">Enviar Pedido</button>
-
-        </div>
-
-      </form>
-      
-
-      <?php } ?>
-
-
-
-
+       ?>
     </div>
   </div>
+</section>
 
-  <?php 
-  require_once 'includes/footer.html';
-  ?>
+
+
+<!-- Modal Structure -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <div style="text-align:right"><a href="">
+      <a href=""><i class="fa fa-close" aria-hidden="true"></i></a>
+    </a></div>
+
+    <?php if (isset($_SESSION['idcliente'])) { ?>
+
+    <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
+      <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
+      <div class="col m6 s12">
+
+        <div class="input-field col m12 s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" value="<?php echo $respcliente['nome'] ?>"  required name="nome">
+          <label for="icon_prefix" data-error="insira um nome válido" data-success="perfeito">Seu Nome</label>
+        </div>
+
+        <div class="input-field col m12 s12">
+          <i class="material-icons prefix">email</i>
+          <input id="icon_prefix" type="email" class="validate" value="<?php echo $respcliente['email'] ?>" required name="email">
+          <label for="icon_prefix" data-error="insira um email valido" data-success="perfeito">Seu Email</label>
+        </div>
+
+        <div class="input-field col m12 s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="txtTelefone" type="tel" class="validate" value="<?php echo $respcliente['telefone'] ?>" required name="telefone">
+          <label for="icon_prefix" data-error="insira um telefone válido" data-success="perfeito">Seu Telefone</label>
+        </div>
+
+        <div class="input-field col s12">
+          <i class="material-icons prefix">work</i>
+          <select name="servico">
+            <option value="" disabled selected>Qual serviço está procurando?</option>
+            <?php 
+
+            foreach ($services as $service) { ?>
+            <option value="<?php  echo $service['nomeservico'] ?>"> <?php echo $service['nomeservico']?></option>
+            <?php }
+            
+            ?>
+
+          </select>
+        </div>
+
+        <div class="input-field col m12 s12">
+          <i class="material-icons prefix">textsms</i>
+          <textarea name="msg" placeholder="Descreva sua necessidade..." id="icon_prefix2" class="materialize-textarea"></textarea>
+
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn-large">Enviar Pedido</button>
+
+      </div>
+
+    </form>
+
+
+    <?php } else { ?>
+
+<div style="text-align:center">
+   <h1 class="title center">É necessário estar logado</h1>
+
+   <a  href="login/c"> <button class="btn waves-effect waves-light" type="submit">Logar como cliente
+      </button>
+    </a>
+    </div>
+    <?php } ?>
+
+
+
+
+  </div>
+</div>
+
+<?php 
+require_once 'includes/footer.html';
+?>
 
 </body>
 
