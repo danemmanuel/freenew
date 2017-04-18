@@ -16,13 +16,14 @@ require_once 'conta/php/class/servicos.class.php';
 require_once 'conta/php/class/habilidades.class.php';
 require_once 'conta/php/class/cliente.class.php';
 require_once 'conta/php/class/mensagem.class.php';
+require_once 'conta/php/class/avaliacao.class.php';
 
 $free= new freelancer();
 $servicos= new servicos();
 $areaatuacao= new areaatuacao();
 $habilidades= new habilidades();
 $cliente= new cliente();
-$mensagem= new mensagem();
+$avaliacao= new avaliacao();
 
 
 $free->setId($idf);
@@ -37,8 +38,8 @@ $services=$servicos->buscarTodos();
 $habilidades->setIdFreelancer($idf);
 $habilidade=$habilidades->buscarTodos();
 
-$mensagem->setIdFreelancer($idf);
-$respmensagem = $mensagem->buscarTodosf();
+$avaliacao->setIdFreelancer($idf);
+$respavaliacao=$avaliacao->buscarTodosf();
 
 if (isset($_SESSION['idcliente'])) {
   $cliente->setId($_SESSION['idcliente']);
@@ -271,24 +272,43 @@ $anos=($date-$datanascimento);
 <section>
   <div class="row">
     <div class="col m12 s12 center">
-      <div class="title">Histórico de Jobs</div>
+      <div class="title">Avaliações</div>
 
-      <?php 
+      <div class="col m4 s12">
+       <b>Cliente</b> 
+     </div>
+     <div class="col m4 s12">
+       <b> Comentario</b> 
+     </div>
+     <div class="col m4 s12">
+      <b>Avaliação 0-5</b> 
+    </div>
+    <?php 
 
-      foreach ($respmensagem as $rowmensagem) { ?>
+    foreach ($respavaliacao as $rowavaliacao) { 
+      $cliente->setId($rowavaliacao['idcliente']);
+      $respc=$cliente->buscarId();
 
-      <div class="col m6 s12">
-        <?php echo $rowmensagem['nome']; ?>
+      ?>
+
+
+      <div class='row'>
+        <div class="col m4 s12">
+          <?php  echo $respc['nome']; ?>
+        </div>
+
+        <div class="col m4 s12">
+          <?php echo $rowavaliacao['comentario']; ?>
+        </div>
+
+        <div class="col m4 s12">
+          <?php echo $rowavaliacao['avaliacao']; ?>
+        </div>
       </div>
 
-      <div class="col m6 s12">
-        <?php echo $rowmensagem['servico']; ?>
-      </div>
-       
-       
-     <?php }
+      <?php }
 
-       ?>
+      ?>
     </div>
   </div>
 </section>
@@ -305,6 +325,7 @@ $anos=($date-$datanascimento);
     <?php if (isset($_SESSION['idcliente'])) { ?>
 
     <form action="conta/php/functions/enviarpedido.php" autocomplete="off" method="POST">
+      <input type="hidden" name="idcliente" value="<?php echo $respcliente['idcliente'] ?>">
       <input type="hidden" name="idfreelancer" value="<?php echo $idfree ?>">
       <div class="col m6 s12">
 
@@ -335,7 +356,7 @@ $anos=($date-$datanascimento);
             foreach ($services as $service) { ?>
             <option value="<?php  echo $service['nomeservico'] ?>"> <?php echo $service['nomeservico']?></option>
             <?php }
-            
+
             ?>
 
           </select>
@@ -356,19 +377,19 @@ $anos=($date-$datanascimento);
 
     <?php } else { ?>
 
-<div style="text-align:center">
-   <h1 class="title center">É necessário estar logado</h1>
+    <div style="text-align:center">
+     <h1 class="title center">É necessário estar logado</h1>
 
-   <a  href="login/c"> <button class="btn waves-effect waves-light" type="submit">Logar como cliente
-      </button>
-    </a>
-    </div>
-    <?php } ?>
-
-
+     <a  href="login/c"> <button class="btn waves-effect waves-light" type="submit">Logar como cliente
+     </button>
+   </a>
+ </div>
+ <?php } ?>
 
 
-  </div>
+
+
+</div>
 </div>
 
 <?php 

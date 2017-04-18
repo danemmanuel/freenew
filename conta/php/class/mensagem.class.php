@@ -190,6 +190,57 @@ class mensagem{
 			echo $e->getMessage();
 		}}
 
+		public function buscarTodosAll(){
+		$conect = new conexao();
+		try{
+			$stmt = $conect->conn->prepare(
+				"SELECT * from mensagens where idfreelancer=:idfreelancer and ativo=0");
+			$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
+			$stmt->execute();
+			$r=$stmt->fetchAll();
+			$resposta= array();
+			foreach ($r as $row) {
+				$temp= array(
+					"idmensagem"=>$row['idmensagem'],
+					"idfreelancer"=>$row['idfreelancer'],
+					"nome"=>$row['nome'],
+					"email"=>$row['email'],
+					"data"=>$row['data'],
+					"telefone"=>$row['telefone'],
+					"mensagem"=>$row['mensagem'],
+					"servico"=>$row['servico']);
+				array_push($resposta, $temp);
+			}
+			return $resposta;
+		}catch(PDOException $e){
+			echo $e->getMessage();
+		}}
+
+		public function buscarTodosCliente(){
+		$conect = new conexao();
+		try{
+			$stmt = $conect->conn->prepare(
+				"SELECT * from mensagens where idcliente=:idcliente and ativo=1");
+			$stmt->bindValue(":idcliente",$this->getIdCliente());
+			$stmt->execute();
+			$r=$stmt->fetchAll();
+			$resposta= array();
+			foreach ($r as $row) {
+				$temp= array(
+					"idmensagem"=>$row['idmensagem'],
+					"idfreelancer"=>$row['idfreelancer'],
+					"nome"=>$row['nome'],
+					"email"=>$row['email'],
+					"telefone"=>$row['telefone'],
+					"mensagem"=>$row['mensagem'],
+					"servico"=>$row['servico']);
+				array_push($resposta, $temp);
+			}
+			return $resposta;
+		}catch(PDOException $e){
+			echo $e->getMessage();
+		}}
+
 
 		public function buscarTodosf(){
 		$conect = new conexao();
@@ -221,8 +272,26 @@ class mensagem{
 			$conect = new conexao();
 			try{
 				$stmt = $conect->conn->prepare(
-					"SELECT * from clientes where idusuario=:idusuario");
-				$stmt->bindValue(":idusuario",$this->getIdUsuario());
+					"SELECT * from mensagens where idfreelancer=:idfreelancer and ativo='1'");
+				$stmt->bindValue(":idfreelancer",$this->getIdFreelancer());
+				$stmt->execute();
+				$r=$stmt->fetchAll();
+				$i=0;
+				foreach ($r as $row) {
+					$i++;
+				}
+				
+				echo $i;
+			}catch(PDOException $e){
+				echo $e->getMessage();
+			}}
+
+			public function somarCliente(){
+			$conect = new conexao();
+			try{
+				$stmt = $conect->conn->prepare(
+					"SELECT * from mensagens where idcliente=:idcliente and ativo='1'");
+				$stmt->bindValue(":idcliente",$this->getIdCliente());
 				$stmt->execute();
 				$r=$stmt->fetchAll();
 				$i=0;
