@@ -281,7 +281,7 @@ $anos=($date-$datanascimento);
        <b> Comentario</b> 
      </div>
      <div class="col m4 s12">
-      <b>Avaliação 0-5</b> 
+      <b>Avaliação</b> 
     </div>
     <?php 
 
@@ -302,8 +302,24 @@ $anos=($date-$datanascimento);
         </div>
 
         <div class="col m4 s12">
-          <?php echo $rowavaliacao['avaliacao']; ?>
+          <?php
+
+          if ($rowavaliacao['avaliacao']=="1") {
+              echo "<img style='max-width:100px' src='img/1star.jpg'>";
+            
+          }elseif ($rowavaliacao['avaliacao']=="2") {
+            echo "<img style='max-width:100px' src='img/2star.jpg'>";
+          }elseif ($rowavaliacao['avaliacao']=="3") {
+            echo "<img style='max-width:100px' src='img/3star.jpg'>";
+          }elseif($rowavaliacao['avaliacao']=="4") {
+            echo "<img style='max-width:100px' src='img/4star.jpg'>";
+          }elseif($rowavaliacao['avaliacao']=="5") {
+            echo "<img style='max-width:100px' src='img/5star.jpg'>";
+          }
+
+           ?>
         </div>
+
       </div>
 
       <?php }
