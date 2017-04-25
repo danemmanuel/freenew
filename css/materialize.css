@@ -4698,6 +4698,8 @@ video.responsive-video {
 
   .card .card-image {
     position: relative;
+    max-width: 100%;
+    max-height: 300px;
   }
 
   .card .card-image img {

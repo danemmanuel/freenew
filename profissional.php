@@ -58,8 +58,7 @@ $linkfacebook=$resposta['facebook'];
 $linklinkedin=$resposta['linkedin'];
 $linkinsta=$resposta['insta'];
 
-$date = date('Y-m-d');
-$anos=($date-$datanascimento);
+
 
 
 ?>
@@ -149,9 +148,7 @@ $anos=($date-$datanascimento);
 
      </div>
 
-     <div class="idade">
-      <?php echo $anos; ?> anos
-    </div>
+     
     <div class="iconsocial">
 
       <?php if ($linkfacebook!=NULL) { ?>
@@ -177,6 +174,10 @@ $anos=($date-$datanascimento);
     <div class="cv">
 
       <a  href="#modal2"> <button class="btn waves-effect waves-light" type="submit">Contrate-me
+      </button>
+    </a>
+    
+    <a target="_blank" href="dompdf/carregadados.php?id=<?php echo $idf; ?>"> <button class="btn waves-effect waves-light" type="submit">Baixar PDF
       </button>
     </a>
   </div>
@@ -305,7 +306,7 @@ $anos=($date-$datanascimento);
           <?php
 
           if ($rowavaliacao['avaliacao']=="1") {
-              echo "<img style='max-width:100px' src='img/1star.jpg'>";
+            echo "<img style='max-width:100px' src='img/1star.jpg'>";
             
           }elseif ($rowavaliacao['avaliacao']=="2") {
             echo "<img style='max-width:100px' src='img/2star.jpg'>";
@@ -317,7 +318,7 @@ $anos=($date-$datanascimento);
             echo "<img style='max-width:100px' src='img/5star.jpg'>";
           }
 
-           ?>
+          ?>
         </div>
 
       </div>
