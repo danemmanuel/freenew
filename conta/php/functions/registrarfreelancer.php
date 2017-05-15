@@ -30,6 +30,7 @@ if ($verificaEmail==$email) {
 	</script>
 
 	";
+	header("location:../../../login/f/");
 }else{
 
 	
